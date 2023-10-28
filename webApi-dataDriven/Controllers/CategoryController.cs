@@ -6,34 +6,53 @@ namespace webApi_dataDriven.Controllers;
 [Route("categories")]
 public class CategoryController : ControllerBase
 {
-    [Route("{id:guid}")]
-    public string GetById(string id)
+    [HttpGet]
+    [Route("{id:int}")]
+    public async Task<ActionResult<CategoryModel>> GetById(Guid id)
     {   
-        return "Hello World!" + id.ToString();
+        return new CategoryModel();
+    }
+    
+    [HttpGet]
+    [Route("")]
+    public async Task<ActionResult<List<CategoryModel>>> Get()
+    {
+        return new List<CategoryModel>();
     }
 
     [HttpPost]
     [Route("")]
-    public CategoryModel Post([FromBody]CategoryModel model)
+    public async Task<ActionResult<List<CategoryModel>>> Post([FromBody] CategoryModel model)
     {
-        model.Id = Guid.NewGuid();
-        return model;
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
+        return Ok(model);
+    }
+
+    /*[HttpPost]
+    [Route("")]
+    public async Task<ActionResult<CategoryModel>> Post(
+        [FromBody]CategoryModel model)
+    {
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
+        return Ok(model);
     }
 
     [HttpPut]
-    [Route("{id:guid}")]
-    public CategoryModel PUT(Guid id, [FromBody] CategoryModel model)
+    [Route("{id:int}")]
+    public async Task<ActionResult<List<CategoryModel>>> Put(int id, [FromBody] CategoryModel model)
     {
         if (model.Id == id)
-            return model;
+            return Ok(model);
         
-        return null;
+        return NotFound();
     }
 
     [HttpDelete]
-    [Route("{id:guid")]
-    public string Delete()
+    [Route("{id:int")]
+    public async Task<ActionResult<List<CategoryModel>>> Delete()
     {
-        return "Delete";
-    }
+        return Ok();
+    }*/
 }

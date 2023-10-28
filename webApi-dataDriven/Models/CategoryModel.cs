@@ -5,7 +5,7 @@ namespace webApi_dataDriven.Models;
 
 public class CategoryModel
 {
-    [Key] public Guid Id { get; set; }
+    [Key] public int Id { get; set; } //= Guid.NewGuid();
     [Required(ErrorMessage = "Required field")]
     public string Title { get; set; }
 }
