@@ -16,10 +16,17 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+/*app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllers();
+});*/
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseRouting();
 
 app.Run();

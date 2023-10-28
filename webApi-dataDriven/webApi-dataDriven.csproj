@@ -17,15 +17,21 @@
       <Content Include="..\.dockerignore">
         <Link>.dockerignore</Link>
       </Content>
+      <Content Remove="Controllers\Models\**" />
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Remove="WeatherForecast.cs" />
       <Compile Remove="Controllers\WeatherForecastController.cs" />
+      <Compile Remove="Controllers\Models\**" />
+      <Compile Remove="WeatherForecast.cs" />
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Controllers\" />
+      <EmbeddedResource Remove="Controllers\Models\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Controllers\Models\**" />
     </ItemGroup>
 
 </Project>
