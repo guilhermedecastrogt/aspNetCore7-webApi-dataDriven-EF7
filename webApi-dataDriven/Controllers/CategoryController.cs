@@ -1,32 +1,37 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using webApi_dataDriven.Models;
 
 namespace webApi_dataDriven.Controllers;
 
 [Route("categories")]
 public class CategoryController : ControllerBase
 {
-    [Route("")]
-    public string MyMethod()
-    {
-        return "Hello World!";
+    [Route("{id:guid}")]
+    public string GetById(string id)
+    {   
+        return "Hello World!" + id.ToString();
     }
 
     [HttpPost]
     [Route("")]
-    public string Post()
+    public CategoryModel Post([FromBody]CategoryModel model)
     {
-        return "POST";
+        model.Id = Guid.NewGuid();
+        return model;
     }
 
     [HttpPut]
-    [Route("")]
-    public string PUT()
+    [Route("{id:guid}")]
+    public CategoryModel PUT(Guid id, [FromBody] CategoryModel model)
     {
-        return "PUT";
+        if (model.Id == id)
+            return model;
+        
+        return null;
     }
 
     [HttpDelete]
-    [Route("")]
+    [Route("{id:guid")]
     public string Delete()
     {
         return "Delete";
