@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using webApi_dataDriven.Data;
 using webApi_dataDriven.Models;
 
 namespace webApi_dataDriven.Controllers;
@@ -22,34 +23,40 @@ public class CategoryController : ControllerBase
 
     [HttpPost]
     [Route("")]
-    public async Task<ActionResult<List<CategoryModel>>> Post([FromBody] CategoryModel model)
+    public async Task<ActionResult<List<CategoryModel>>> Post(
+        [FromBody] CategoryModel model,
+        [FromServices] DataContext context)
     {
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
-        return Ok(model);
-    }
 
-    /*[HttpPost]
-    [Route("")]
-    public async Task<ActionResult<CategoryModel>> Post(
-        [FromBody]CategoryModel model)
-    {
-        if (!ModelState.IsValid)
-            return BadRequest(ModelState);
-        return Ok(model);
+        try
+        {
+            context.Categories.Add(model);
+            await context.SaveChangesAsync();
+            return Ok(model);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new { message = "Erro to save category" });
+        }
     }
+    
 
     [HttpPut]
     [Route("{id:int}")]
     public async Task<ActionResult<List<CategoryModel>>> Put(int id, [FromBody] CategoryModel model)
     {
-        if (model.Id == id)
-            return Ok(model);
-        
-        return NotFound();
+        if (model.Id != id)
+            return NotFound(new { message = "Category not found" });
+
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
+
+        return Ok(model);
     }
 
-    [HttpDelete]
+    /*[HttpDelete]
     [Route("{id:int")]
     public async Task<ActionResult<List<CategoryModel>>> Delete()
     {
