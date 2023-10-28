@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using webApi_dataDriven.Data;
 using webApi_dataDriven.Models;
 
@@ -45,7 +46,10 @@ public class CategoryController : ControllerBase
 
     [HttpPut]
     [Route("{id:int}")]
-    public async Task<ActionResult<List<CategoryModel>>> Put(int id, [FromBody] CategoryModel model)
+    public async Task<ActionResult<List<CategoryModel>>> Put(
+        int id,
+        [FromBody] CategoryModel model,
+        [FromServices] DataContext context)
     {
         if (model.Id != id)
             return NotFound(new { message = "Category not found" });
@@ -53,13 +57,41 @@ public class CategoryController : ControllerBase
         if (!ModelState.IsValid)
             return BadRequest(ModelState);
 
-        return Ok(model);
+        try
+        {
+            context.Entry<CategoryModel>(model).State = EntityState.Modified;
+            await context.SaveChangesAsync();
+            return Ok(model);
+        }
+        catch (DbUpdateConcurrencyException)
+        {
+            return BadRequest(new { message = "Error to update category" });
+        }
+        catch (Exception)
+        {
+            return BadRequest(new { message = "Error to update category" });
+        }
     }
 
-    /*[HttpDelete]
-    [Route("{id:int")]
-    public async Task<ActionResult<List<CategoryModel>>> Delete()
+    [HttpDelete]
+    [Route("{id:int}")]
+    public async Task<ActionResult<List<CategoryModel>>> Delete(
+        int id,
+        [FromServices] DataContext context)
     {
-        return Ok();
-    }*/
+        var category = await context.Categories.FirstOrDefaultAsync(x => x.Id == id);
+        if (category == null)
+            return NotFound(new { message = "Category not found" });
+
+        try
+        {
+            context.Categories.Remove(category);
+            await context.SaveChangesAsync();
+            return Ok(new { message = "Deleted category successfully" });
+        }
+        catch (Exception)
+        {
+            return BadRequest(new { message = "Error to delete category" });
+        }
+    }
 }
