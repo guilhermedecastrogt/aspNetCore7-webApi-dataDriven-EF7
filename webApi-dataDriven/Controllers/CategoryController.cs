@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
 using webApi_dataDriven.Data;
 using webApi_dataDriven.Models;
 
@@ -8,18 +9,23 @@ namespace webApi_dataDriven.Controllers;
 [Route("categories")]
 public class CategoryController : ControllerBase
 {
+    
     [HttpGet]
     [Route("{id:int}")]
-    public async Task<ActionResult<CategoryModel>> GetById(Guid id)
-    {   
-        return new CategoryModel();
+    public async Task<ActionResult<CategoryModel>> GetById(int id, [FromServices] DataContext context)
+    {
+        CategoryModel? category = await context.Categories.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
+        if (category == null)
+            return BadRequest(new { message = "Category not found" });
+        return Ok(category);
     }
     
     [HttpGet]
     [Route("")]
-    public async Task<ActionResult<List<CategoryModel>>> Get()
+    public async Task<ActionResult<List<CategoryModel>>> Get(int id, [FromServices] DataContext context)
     {
-        return new List<CategoryModel>();
+        var category = await context.Categories.AsNoTracking().ToListAsync();
+        return Ok(category);
     }
 
     [HttpPost]
@@ -74,7 +80,7 @@ public class CategoryController : ControllerBase
     }
 
     [HttpDelete]
-    [Route("{id:int}")]
+    [Route("{id:int}")] 
     public async Task<ActionResult<List<CategoryModel>>> Delete(
         int id,
         [FromServices] DataContext context)

@@ -4,7 +4,7 @@ namespace webApi_dataDriven.Models;
 
 public class ProductModel
 {
-    [Key] public Guid Id { get; set; }
+    [Key] public int Id { get; set; }
     
     [MaxLength(30, ErrorMessage = "A field should contain a maximum of 30 characters")]
     [MinLength(3, ErrorMessage = "A field should contain a minimum 3 characters")]
@@ -17,5 +17,6 @@ public class ProductModel
     [Range(1, int.MaxValue, ErrorMessage = "A price should be greather than zero")]
     public decimal Price { get; set; }
 
-    public CategoryModel Category { get; set; }
+    public int CategoryId { get; set; }
+    public CategoryModel? Category { get; set; }
 }
