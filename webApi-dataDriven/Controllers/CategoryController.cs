@@ -7,7 +7,7 @@ using webApi_dataDriven.Models;
 
 namespace webApi_dataDriven.Controllers;
 
-[Route("categories")]
+[Route("v1/categories")]
 public class CategoryController : ControllerBase
 {
     
@@ -50,9 +50,9 @@ public class CategoryController : ControllerBase
             await context.SaveChangesAsync();
             return Ok(model);
         }
-        catch (Exception ex)
+        catch (Exception)
         {
-            return BadRequest(new { message = "Erro to save category" });
+            return BadRequest(new { message = "Error to save category" });
         }
     }
     

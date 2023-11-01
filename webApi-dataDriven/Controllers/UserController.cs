@@ -21,8 +21,12 @@ public class UserController : Controller
             return BadRequest(ModelState);
         try
         {
+            model.Role = "employee";
+            
             context.Users.Add(model);
             await context.SaveChangesAsync();
+
+            model.Password = "";
             return Ok(model);
         }
         catch (Exception ex)
@@ -50,6 +54,7 @@ public class UserController : Controller
             return NotFound(new { message = "Invalid user or password" });
 
         var token = TokenService.TokenGenerate(user);
+        user.Password = "";
         return new
         {
             user = user,
