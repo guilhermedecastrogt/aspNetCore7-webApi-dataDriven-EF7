@@ -29,7 +29,6 @@ builder.Services.AddSwaggerGen(c =>
     opt.UseInMemoryDatabase("Database"));*/
 builder.Services.AddDbContext<DataContext>(opt =>
     opt.UseSqlServer(builder.Configuration.GetConnectionString("connectionString")));
-builder.Services.AddScoped<DataContext, DataContext>();
 
 builder.Services.AddResponseCompression(options =>
 {
