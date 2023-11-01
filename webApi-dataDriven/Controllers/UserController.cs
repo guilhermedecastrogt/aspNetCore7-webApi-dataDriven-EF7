@@ -7,7 +7,7 @@ using webApi_dataDriven.Services;
 
 namespace webApi_dataDriven.Controllers;
 
-[Route("v1/users")]
+[Route("users")]
 public class UserController : Controller
 {
     [HttpPost]
@@ -47,7 +47,7 @@ public class UserController : Controller
                 x.Password == model.Password
             ).FirstOrDefaultAsync();
         if (user == null)
-            return NotFound(new { message = "User not found" });
+            return NotFound(new { message = "Invalid user or password" });
 
         var token = TokenService.TokenGenerate(user);
         return new
@@ -55,5 +55,35 @@ public class UserController : Controller
             user = user,
             token = token
         };
+    }
+
+    [HttpPut]
+    [Route("{id:int}")]
+    [Authorize(Roles = "manager")]
+    public async Task<ActionResult<UserModel>> Put(
+        [FromServices] DataContext context,
+        [FromBody] UserModel model,
+        int id)
+    {
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
+
+        if (id != model.Id)
+            return NotFound(new { message = "User not found" });
+
+        try
+        {
+            context.Entry(model).State = EntityState.Modified;
+            await context.SaveChangesAsync();
+            
+            return model;
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(new
+            {
+                message = $"Error to put user. Details: {ex}"
+            });
+        }
     }
 }

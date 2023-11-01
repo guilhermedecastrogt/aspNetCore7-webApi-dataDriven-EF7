@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
 using webApi_dataDriven.Data;
@@ -12,9 +13,13 @@ public class CategoryController : ControllerBase
     
     [HttpGet]
     [Route("{id:int}")]
+    [AllowAnonymous]
     public async Task<ActionResult<CategoryModel>> GetById(int id, [FromServices] DataContext context)
     {
-        CategoryModel? category = await context.Categories.AsNoTracking().FirstOrDefaultAsync(x => x.Id == id);
+        CategoryModel? category = await context.Categories
+            .AsNoTracking()
+            .FirstOrDefaultAsync(x => x.Id == id);
+        
         if (category == null)
             return BadRequest(new { message = "Category not found" });
         return Ok(category);
@@ -22,6 +27,7 @@ public class CategoryController : ControllerBase
     
     [HttpGet]
     [Route("")]
+    [AllowAnonymous]
     public async Task<ActionResult<List<CategoryModel>>> Get(int id, [FromServices] DataContext context)
     {
         var category = await context.Categories.AsNoTracking().ToListAsync();
@@ -30,6 +36,7 @@ public class CategoryController : ControllerBase
 
     [HttpPost]
     [Route("")]
+    [Authorize(Roles = "employee")]
     public async Task<ActionResult<List<CategoryModel>>> Post(
         [FromBody] CategoryModel model,
         [FromServices] DataContext context)
@@ -52,6 +59,7 @@ public class CategoryController : ControllerBase
 
     [HttpPut]
     [Route("{id:int}")]
+    [Authorize(Roles = "employee")]
     public async Task<ActionResult<List<CategoryModel>>> Put(
         int id,
         [FromBody] CategoryModel model,
@@ -80,7 +88,8 @@ public class CategoryController : ControllerBase
     }
 
     [HttpDelete]
-    [Route("{id:int}")] 
+    [Route("{id:int}")]
+    [Authorize(Roles = "employee")]
     public async Task<ActionResult<List<CategoryModel>>> Delete(
         int id,
         [FromServices] DataContext context)

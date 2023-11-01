@@ -15,6 +15,5 @@ public class UserModel
     [MaxLength(20, ErrorMessage = "A field should contain a maximum 20 characters")]
     [MinLength(3, ErrorMessage = "A field should contain a maximum 3 characters")]
     public string Password { get; set; }
-
     public string Role { get; set; }
 }
