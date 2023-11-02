@@ -70,6 +70,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseDeveloperExceptionPage();
+
 /*app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllers();
