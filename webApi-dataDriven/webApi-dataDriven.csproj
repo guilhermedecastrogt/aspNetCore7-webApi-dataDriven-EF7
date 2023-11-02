@@ -23,6 +23,63 @@
 
     <ItemGroup>
       <Content Remove="Controllers\Models\**" />
+      <Content Include="bin\Debug\net7.0\appsettings.Development.json" />
+      <Content Include="bin\Debug\net7.0\appsettings.json" />
+      <Content Include="bin\Debug\net7.0\Azure.Core.dll" />
+      <Content Include="bin\Debug\net7.0\Azure.Identity.dll" />
+      <Content Include="bin\Debug\net7.0\Humanizer.dll" />
+      <Content Include="bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll" />
+      <Content Include="bin\Debug\net7.0\Microsoft.AspNetCore.OpenApi.dll" />
+      <Content Include="bin\Debug\net7.0\Microsoft.Bcl.AsyncInterfaces.dll" />
+      <Content Include="bin\Debug\net7.0\Microsoft.Data.SqlClient.dll" />
+      <Content Include="bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Abstractions.dll" />
+      <Content Include="bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Design.dll" />
+      <Content Include="bin\Debug\net7.0\Microsoft.EntityFrameworkCore.dll" />
+      <Content Include="bin\Debug\net7.0\Microsoft.EntityFrameworkCore.InMemory.dll" />
+      <Content Include="bin\Debug\net7.0\Microsoft.EntityFrameworkCore.Relational.dll" />
+      <Content Include="bin\Debug\net7.0\Microsoft.EntityFrameworkCore.SqlServer.dll" />
+      <Content Include="bin\Debug\net7.0\Microsoft.Extensions.DependencyModel.dll" />
+      <Content Include="bin\Debug\net7.0\Microsoft.Identity.Client.dll" />
+      <Content Include="bin\Debug\net7.0\Microsoft.Identity.Client.Extensions.Msal.dll" />
+      <Content Include="bin\Debug\net7.0\Microsoft.IdentityModel.Abstractions.dll" />
+      <Content Include="bin\Debug\net7.0\Microsoft.IdentityModel.JsonWebTokens.dll" />
+      <Content Include="bin\Debug\net7.0\Microsoft.IdentityModel.Logging.dll" />
+      <Content Include="bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.dll" />
+      <Content Include="bin\Debug\net7.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll" />
+      <Content Include="bin\Debug\net7.0\Microsoft.IdentityModel.Tokens.dll" />
+      <Content Include="bin\Debug\net7.0\Microsoft.OpenApi.dll" />
+      <Content Include="bin\Debug\net7.0\Microsoft.SqlServer.Server.dll" />
+      <Content Include="bin\Debug\net7.0\Microsoft.Win32.SystemEvents.dll" />
+      <Content Include="bin\Debug\net7.0\Mono.TextTemplating.dll" />
+      <Content Include="bin\Debug\net7.0\runtimes\unix\lib\net6.0\Microsoft.Data.SqlClient.dll" />
+      <Content Include="bin\Debug\net7.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll" />
+      <Content Include="bin\Debug\net7.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll" />
+      <Content Include="bin\Debug\net7.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll" />
+      <Content Include="bin\Debug\net7.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll" />
+      <Content Include="bin\Debug\net7.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll" />
+      <Content Include="bin\Debug\net7.0\runtimes\win\lib\net6.0\Microsoft.Data.SqlClient.dll" />
+      <Content Include="bin\Debug\net7.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll" />
+      <Content Include="bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll" />
+      <Content Include="bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Runtime.Caching.dll" />
+      <Content Include="bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll" />
+      <Content Include="bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll" />
+      <Content Include="bin\Debug\net7.0\Swashbuckle.AspNetCore.Swagger.dll" />
+      <Content Include="bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerGen.dll" />
+      <Content Include="bin\Debug\net7.0\Swashbuckle.AspNetCore.SwaggerUI.dll" />
+      <Content Include="bin\Debug\net7.0\System.CodeDom.dll" />
+      <Content Include="bin\Debug\net7.0\System.Configuration.ConfigurationManager.dll" />
+      <Content Include="bin\Debug\net7.0\System.Drawing.Common.dll" />
+      <Content Include="bin\Debug\net7.0\System.IdentityModel.Tokens.Jwt.dll" />
+      <Content Include="bin\Debug\net7.0\System.Memory.Data.dll" />
+      <Content Include="bin\Debug\net7.0\System.Runtime.Caching.dll" />
+      <Content Include="bin\Debug\net7.0\System.Security.Cryptography.ProtectedData.dll" />
+      <Content Include="bin\Debug\net7.0\System.Security.Permissions.dll" />
+      <Content Include="bin\Debug\net7.0\System.Windows.Extensions.dll" />
+      <Content Include="bin\Debug\net7.0\webApi-dataDriven.deps.json" />
+      <Content Include="bin\Debug\net7.0\webApi-dataDriven.dll" />
+      <Content Include="bin\Debug\net7.0\webApi-dataDriven.exe" />
+      <Content Include="bin\Debug\net7.0\webApi-dataDriven.pdb" />
+      <Content Include="bin\Debug\net7.0\webApi-dataDriven.runtimeconfig.json" />
     </ItemGroup>
 
     <ItemGroup>
