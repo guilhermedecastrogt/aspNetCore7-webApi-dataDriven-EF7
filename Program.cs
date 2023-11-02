@@ -72,24 +72,18 @@ if (app.Environment.IsDevelopment())
 
 app.UseDeveloperExceptionPage();
 
-/*app.UseEndpoints(endpoints =>
-{
-    endpoints.MapControllers();
-});*/
-
 app.UseHttpsRedirection();
 
 app.UseCors(x => x
     .AllowAnyOrigin()
     .AllowAnyMethod()
     .AllowAnyHeader()
-    );
+);
 
-app.UseAuthorization();
+app.UseRouting();
+
 app.UseAuthorization();
 
 app.MapControllers();
-
-app.UseRouting();
 
 app.Run();
