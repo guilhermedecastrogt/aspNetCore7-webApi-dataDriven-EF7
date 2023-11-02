@@ -31,7 +31,7 @@ public class UserController : Controller
         }
         catch (Exception ex)
         {
-            return BadRequest(new
+            return BadRequest(new 
             {
                 message = $"Error to save User, try again. Error details: {ex}"
             });

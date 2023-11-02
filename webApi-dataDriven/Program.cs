@@ -25,10 +25,10 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
-/*builder.Services.AddDbContext<DataContext>(opt =>
-    opt.UseInMemoryDatabase("Database"));*/
 builder.Services.AddDbContext<DataContext>(opt =>
-    opt.UseSqlServer(builder.Configuration.GetConnectionString("connectionString")));
+    opt.UseInMemoryDatabase("Database"));
+//builder.Services.AddDbContext<DataContext>(opt =>
+    //opt.UseSqlServer(builder.Configuration.GetConnectionString("connectionString")));
 
 builder.Services.AddResponseCompression(options =>
 {
